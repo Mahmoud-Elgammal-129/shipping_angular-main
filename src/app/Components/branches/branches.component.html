@@ -1,0 +1,40 @@
+<div class="mt-5">
+  <div class="container">
+    <a routerLink="/add-branch" class="btn btn-outline-primary mb-5">Add Branch</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">الاسم</th>
+        <th scope="col">التاريخ</th>
+        <th scope="col">الحالة</th>
+        <th scope="col">الاعدادات</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let branch of Branches; let i=index;">
+        <th scope="row">{{ i+1 }}</th>
+        <td>{{ branch.name }}</td>
+        <td>{{ branch.date }}</td>
+  
+        <td>{{ branch.isDeleted }}</td>
+        <td>
+          <!-- <a
+            [routerLink]="['/add-branch', branch.id]"
+            class="btn btn-outline-warning"
+            >Edit</a
+          >|
+          <a (click)="deleteBranch(branch.id)" class="btn btn-outline-danger"
+            >Delete</a
+          > -->
+          <i [routerLink]="['/add-branch', branch.id]" class="fs-3 mx-1 text-info bi bi-pencil-square"></i>
+          <i (click)="deleteBranch(branch.id)" class=" fs-3 mx-1 text-danger bi bi-trash3-fill"></i>
+          <!-- <i class=" fs-3 mx-1  text-warning bi-eye-fill"></i> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+

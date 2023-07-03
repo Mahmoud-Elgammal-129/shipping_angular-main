@@ -1,0 +1,39 @@
+<div class="mt-5">
+  <div class="container">
+    <a routerLink="/add-governate" class="btn btn-primary mb-5">Add Governate</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">الاسم</th>
+      <th scope="col">الحالة</th>
+      <th scope="col">الاعدادات</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let governate of governates;let i= index;">
+      <th scope="row">{{ i+1 }}</th>
+      <td>{{ governate.name }}</td>
+      <td>{{ governate.isDeleted }}</td>
+      <td>
+        <!-- <a
+          [routerLink]="['/update-governate', governate.id]"
+          class="btn btn-outline-warning"
+          >Edit</a
+        >|
+        <a
+          (click)="deleteGovernate(governate.id)"
+          class="btn btn-outline-danger"
+          >Delete</a
+        > -->
+        <i [routerLink]="['/update-governate', governate.id]"class="fs-3 mx-1 text-info bi bi-pencil-square"></i>
+        <i  (click)="deleteGovernate(governate.id)" class=" fs-3 mx-1 text-danger bi bi-trash3-fill"></i>
+        <!-- <i class=" fs-3 mx-1  text-warning bi-eye-fill"></i> -->
+      </td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+
+

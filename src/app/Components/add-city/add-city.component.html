@@ -1,0 +1,92 @@
+<div class="container mt-5">
+  <h2>{{ isEditMode ? "Edit City" : "Add City" }}</h2>
+  <form [formGroup]="cityForm" (submit)="submitForm()">
+    <div class="form-group">
+      <label for="governateName">City Name:</label>
+      <input
+      formControlName="CityName"
+        type="text"
+        id="governateName"
+        class="form-control"
+        [(ngModel)]="CityName"
+        name="CityName"
+        required
+      />
+    <ng-container *ngIf="getcityhName.touched">
+      <div   *ngIf="getcityhName.hasError('required')"
+     
+      id="NameHelp"
+      class="form-text text-danger"
+    >
+     يجب ادخال اسم المدينة
+    </div>
+    <div   *ngIf="getcityhName.hasError('minlength')"
+     
+      id="NameHelp"
+      class="form-text text-danger"
+    >
+    يجب ان يكون الاسم مكون من 3 حروف او اكتر 
+    </div>
+    </ng-container>
+    </div>
+    <div class="form-group">
+      <label for="governateName">regular Shipping:</label>
+      <input
+      formControlName="regularShipping"
+        type="number"
+        id="governateName"
+        class="form-control"
+        [(ngModel)]="regular_Shipping"
+        name="regular_Shipping"
+        required
+      />
+      <ng-container *ngIf="getregularShipping.touched">
+        <div *ngIf="getregularShipping.hasError('required')"
+     
+        id="NameHelp"
+        class="form-text text-danger"
+      >
+       يجب ادخال قيمة الشحن 
+      </div>
+      </ng-container>
+    </div>
+
+    <div *ngIf="isEditMode" class="form-check">
+      <input
+        type="checkbox"
+        id="isDeleted"
+        class="form-check-input"
+        [(ngModel)]="isDeleted"
+        name="isDeleted"
+      />
+      <label for="isDeleted" class="form-check-label">Is Deleted?</label>
+    </div>
+    <div class="form-group">
+      <label for="governate">Governate:</label>
+      <select
+      formControlName="governate"
+        class="form-control"
+        [(ngModel)]="selectedGovernateId"
+        name="governate"
+      >
+        <option value="">Select a governate</option>
+        <option *ngFor="let governate of governates" [value]="governate.id">{{
+          governate.name
+        }}</option>
+      </select>
+      <ng-container *ngIf="getgovernate.touched">
+  <div *ngIf="getgovernate.hasError('required')"
+     
+      id="NameHelp"
+      class="form-text text-danger"
+    >
+     يجب اختيار محافظة
+    </div>
+      </ng-container>
+    
+    </div>
+    <button type="submit" class="btn btn-primary">
+      {{ isEditMode ? "Update" : "Submit" }}
+    </button>
+  </form>
+</div>

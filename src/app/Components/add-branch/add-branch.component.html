@@ -1,0 +1,94 @@
+
+ 
+<div class="container mt-5">
+  <h2>{{ isEditMode ? "Edit City" : "Add branch" }}</h2>
+  <form (submit)="submitForm()" [formGroup]="branchesForm">
+    <div class="form-group">
+      <label for="BranchName">Branch Name:</label>
+      <input
+      formControlName="BranchName"
+        type="text"
+        id="BranchName"
+        placeholder="اسم الفرع"
+        class="form-control"
+        [(ngModel)]="BranchName"
+        name="BranchName"
+        required
+      />
+      <ng-container *ngIf="getBranchName.touched">
+        <div   *ngIf="getBranchName.hasError('required')"
+     
+        id="NameHelp"
+        class="form-text text-danger"
+      >
+      يجب ادخال اسم الفرع
+      </div>
+      <div   *ngIf="getBranchName.hasError('minlength')"
+     
+      id="NameHelp"
+      class="form-text text-danger"
+    >
+    يجب ان يكون الاسم مكون من 3 حروف او اكتر 
+    </div>
+      </ng-container>
+   
+    </div>
+    <div class="form-group">
+      <label for="Date">Date:</label>
+      <input
+      formControlName="Date"
+        type="date"
+        id="governateName"
+        class="form-control"
+        [(ngModel)]="Date"
+        name="Date"
+        required
+      />
+    <ng-container *ngIf="getdate.touched">
+      <div  *ngIf="getdate.hasError('required')"
+     
+      id="NameHelp"
+      class="form-text text-danger"
+    >
+      يجب ادخال التاريخ
+    </div>
+    </ng-container>
+    </div>
+
+    <div *ngIf="isEditMode" class="form-check">
+      <input
+        type="checkbox"
+        id="isDeleted"
+        class="form-check-input"
+        [(ngModel)]="isDeleted"
+        name="isDeleted"
+      />
+      <label for="isDeleted" class="form-check-label">Is Deleted?</label>
+    </div>
+    <div class="form-group">
+      <label for="governate">City:</label>
+      <select class="form-control" [(ngModel)]="selectedCityId" name="city"formControlName="cities">
+        <option value="">اختيار مدينة</option>
+        <option *ngFor="let city of cities" [value]="city.id">{{
+          city.name
+        }}</option>
+      </select>
+    <ng-container *ngIf="getcities.touched">
+      <div *ngIf="getcities.hasError('required')"
+     
+      id="NameHelp"
+      class="form-text text-danger"
+    >
+      يجب اختيار مدينة
+    </div>
+    </ng-container>
+    </div>
+    <br>
+    <p class="text-danger" *ngIf="branchesForm.status == 'INVALID'">
+      Can't Add becaues Form Data Not Vaild
+    </p>
+    <button type="submit" class="btn btn-primary" >
+      {{ isEditMode ? "Update" : "Submit" }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,38 @@
+<body >
+  <div class="container mt-5">
+    <h2>{{ isEditMode ? 'Edit Governate' : 'Add Governate' }}</h2>
+    <form [formGroup]="governateForm" (submit)="submitForm()">
+      <div class="form-group">
+        <label for="governateName">Governate Name:</label>
+        <input
+        formControlName="governateName"
+         type="text" id="governateName" class="form-control" [(ngModel)]="governateName" name="governateName" required>
+       <ng-container *ngIf="getgovernateName.touched">
+        <div *ngIf="getgovernateName.hasError('required')"
+       
+         id="NameHelp"
+         class="form-text text-danger"
+       >
+       يجب ادخال اسم المحافظة
+       </div>
+       <div *ngIf="getgovernateName.hasError('minlength')"
+       
+       id="NameHelp"
+       class="form-text text-danger"
+     >
+     يجب ان يكون الاسم مكون من 3 حروف او اكتر 
+  
+     </div>
+       </ng-container>
+     
+      </div>
+      <div *ngIf="isEditMode" class="form-check">
+        <input type="checkbox" id="isDeleted" class="form-check-input" [(ngModel)]="isDeleted" name="isDeleted">
+        <label for="isDeleted" class="form-check-label">Is Deleted?</label>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary">
+      {{ isEditMode ? 'Update' : 'Submit' }}</button>
+    </form>
+  </div>
+</body>
